@@ -1,22 +1,25 @@
 import java.util.HashMap;
 import java.util.ArrayList;
-public class TaskManager {
-    private HashMap<Integer, Task> tasks = new HashMap<>();
-    private HashMap<Integer, Epic> epics = new HashMap<>();
+public class Epic extends Task {
 
+    public Epic (String task, String description) {
+        super(task, description);
+    }
+
+
+    private HashMap<Integer, SubTask> subtasks = new HashMap<>();
     private int uniqueId = 1;
-
     public ArrayList<Task> getAll() {
-        return new ArrayList<>(tasks.values());
+        return new ArrayList<>(subtasks.values());
     }
 
     public Task getById(int id) {
-        return tasks.get(id);
+        return subtasks.get(id);
 
     }
 
-    public void create(Task task) {
-        for (Task u : tasks.values()) {
+    public void create(SubTask task) {
+        for (SubTask u : subtasks.values()) {
             if (u.getTask().equals(task.getTask())) {
                 System.out.println("Задача занята");
                 return;
@@ -25,7 +28,7 @@ public class TaskManager {
 
         task.setId(uniqueId);
         uniqueId++;
-        tasks.put(task.getId(), task);
+        subtasks.put(task.getId(), task);
     }
 
     public void update(Task task) {
@@ -39,11 +42,11 @@ public class TaskManager {
     }
 
     public void deleteById(int id) {
-        tasks.remove(id);
+        subtasks.remove(id);
 
     }
 
     public void deleteAll() {
-        tasks.clear();
+        subtasks.clear();
     }
 }

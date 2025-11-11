@@ -1,12 +1,12 @@
 public class Task {
     private int id;
     private String task;
-    private String subtask;
+    private String description;
     private String status;
 
-    public Task (String task, String subtask) {
+    public Task (String task, String description) {
         this.task = task;
-        this.subtask = subtask;
+        this.description = description;
         this.status = "TO DO";
     }
 
@@ -26,12 +26,12 @@ public class Task {
         this.task = task;
     }
 
-    public String getSubtask() {
-        return subtask;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSubtask(String subtask) {
-        this.subtask = subtask;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getStatus() {
