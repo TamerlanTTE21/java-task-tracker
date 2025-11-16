@@ -27,5 +27,8 @@ public class Main {
         System.out.println(userManager.getAll().size()); // 2
         userManager.create(user3);
         System.out.println(userManager.getAll().size()); // 2
+
+        Epic epic = new Epic("write", "book");
+
     }
 }
