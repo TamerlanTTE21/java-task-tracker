@@ -20,7 +20,7 @@ public class Main {
 
 
         for (Task u : userManager.getAll()) {
-            System.out.println(u.getTask());
+            System.out.println(u.getTitle());
         }
 
         Task user3 = new Task("cook", "pasta");
@@ -29,6 +29,16 @@ public class Main {
         System.out.println(userManager.getAll().size()); // 2
 
         Epic epic = new Epic("write", "book");
+
+        task.setStatus("NEW");
+        userManager.update(task);
+        System.out.println(task.getStatus());
+
+        epic.setStatus("DONE");
+        System.out.println(epic.getStatus());
+
+
+
 
     }
 }

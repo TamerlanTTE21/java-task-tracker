@@ -18,7 +18,7 @@ public class TaskManager {
 
     public void create(Task task) {
         for (Task u : tasks.values()) {
-            if (u.getTask().equals(task.getTask())) {
+            if (u.getTitle().equals(task.getTitle())) {
                 System.out.println("Задача занята");
                 return;
             }
@@ -34,7 +34,7 @@ public class TaskManager {
         if (existingUser == null) {
             System.out.println("Задача с таким id не найден");
         } else {
-            existingUser.setTask(task.getTask());
+            existingUser.setTitle(task.getTitle());
             existingUser.setDescription(task.getDescription());
         }
     }
@@ -48,7 +48,7 @@ public class TaskManager {
         tasks.clear();
     }
 
-    private int uniqueEpicId = 1;
+
     public ArrayList<Task> getEpicAll() {
         return new ArrayList<>(subtasks.values());
     }
@@ -58,9 +58,28 @@ public class TaskManager {
 
     }
 
-    public void createEpic(SubTask task) {
+    public void createEpic(Epic epic) {
+        for (Epic e : epics.values()) {
+            if (e.getTitle().equals(epic.getTitle())) {
+                System.out.println("Задача занята");
+                return;
+            }
+        }
 
-        subtasks.put(task.getId(), task);
+        epic.setId(uniqueId);
+        uniqueId++;
+
+        epics.put(epic.getId(), epic);
+    }
+
+    public void epicUpdate(Epic epic) {
+        Task existingUser = getEpicById(epic.getId());
+        if (existingUser == null) {
+            System.out.println("Задача с таким id не найден");
+        } else {
+            existingUser.setTitle(epic.getTitle());
+            existingUser.setDescription(epic.getDescription());
+        }
     }
 
 
@@ -75,7 +94,7 @@ public class TaskManager {
     }
 
 
-    private int uniqueSubTaskId = 1;
+
     public ArrayList<Task> getESubTaskAll() {
         return new ArrayList<>(subtasks.values());
     }
@@ -85,9 +104,26 @@ public class TaskManager {
 
     }
 
-    public void createSubTask(SubTask task) {
+    public void createSubTask(SubTask subtask) {
+        for (SubTask s : subtasks.values()) {
+            if (s.getTitle().equals(subtask.getTitle())) {
+                System.out.println("Задача занята");
+                return;
+            }
+        }
+        subtask.setId(uniqueId);
+        uniqueId++;
+        subtasks.put(subtask.getId(), subtask);
+    }
 
-        subtasks.put(task.getId(), task);
+    public void subTaskUpdate(SubTask subtask) {
+        Task existingUser = getESubTaskById(subtask.getId());
+        if (existingUser == null) {
+            System.out.println("Задача с таким id не найден");
+        } else {
+            existingUser.setTitle(subtask.getTitle());
+            existingUser.setDescription(subtask.getDescription());
+        }
     }
 
 

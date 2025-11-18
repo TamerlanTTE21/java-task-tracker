@@ -1,11 +1,11 @@
 public class Task {
     private int id;
-    private String task;
+    private String title;
     private String description;
     private String status;
 
-    public Task (String task, String description) {
-        this.task = task;
+    public Task (String title, String description) {
+        this.title = title;
         this.description = description;
         this.status = "TO DO";
     }
@@ -18,12 +18,12 @@ public class Task {
         this.id = id;
     }
 
-    public String getTask() {
-        return task;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
