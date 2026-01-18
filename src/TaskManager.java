@@ -17,12 +17,7 @@ public class TaskManager {
     }
 
     public void create(Task task) {
-        for (Task u : tasks.values()) {
-            if (u.getTitle().equals(task.getTitle())) {
-                System.out.println("Задача занята");
-                return;
-            }
-        }
+
 
         task.setId(uniqueId);
         uniqueId++;
@@ -46,25 +41,22 @@ public class TaskManager {
 
     public void deleteAll() {
         tasks.clear();
+        subtasks.clear();
+        epics.clear();
     }
 
 
     public ArrayList<Task> getEpicAll() {
-        return new ArrayList<>(subtasks.values());
+        return new ArrayList<>(epics.values());
     }
 
     public Task getEpicById(int id) {
-        return subtasks.get(id);
+        return epics.get(id);
 
     }
 
     public void createEpic(Epic epic) {
-        for (Epic e : epics.values()) {
-            if (e.getTitle().equals(epic.getTitle())) {
-                System.out.println("Задача занята");
-                return;
-            }
-        }
+
 
         epic.setId(uniqueId);
         uniqueId++;
@@ -85,7 +77,7 @@ public class TaskManager {
 
 
     public void deleteEpicById(int id) {
-        subtasks.remove(id);
+        epics.remove(id);
 
     }
 
