@@ -32,4 +32,8 @@ public class Epic extends Task {
         subtasks.put(subtask.getId(), subtask);
 
     }
+
+    public ArrayList<Task> getSubTaskAll() {
+        return new ArrayList<>(subtasks.values());
+    }
 }
