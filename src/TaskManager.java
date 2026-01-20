@@ -48,9 +48,10 @@ public class TaskManager {
 
     public ArrayList<Task> getEpicAll() {
         return new ArrayList<>(epics.values());
+
     }
 
-    public Task getEpicById(int id) {
+    public Epic getEpicById(int id) {
         return epics.get(id);
 
     }
@@ -77,6 +78,7 @@ public class TaskManager {
 
 
     public void deleteEpicById(int id) {
+
         epics.remove(id);
 
     }
@@ -97,15 +99,24 @@ public class TaskManager {
     }
 
     public void createSubTask(SubTask subtask) {
-        for (SubTask s : subtasks.values()) {
-            if (s.getTitle().equals(subtask.getTitle())) {
-                System.out.println("Задача занята");
-                return;
+        Epic epic = getEpicById(subtask.epic.getId());
+        if (epic != null) {
+
+            for (SubTask s : subtasks.values()) {
+                if (s.getTitle().equals(subtask.getTitle())) {
+                    System.out.println("Задача занята");
+                    return;
+                }
             }
+
+            subtask.setId(uniqueId);
+            uniqueId++;
+            subtasks.put(subtask.getId(), subtask);
+
+            epic.createSubTask(subtask);
+        } else {
+            System.out.println("Epic не существует");
         }
-        subtask.setId(uniqueId);
-        uniqueId++;
-        subtasks.put(subtask.getId(), subtask);
     }
 
     public void subTaskUpdate(SubTask subtask) {

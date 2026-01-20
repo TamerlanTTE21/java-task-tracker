@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,6 +30,7 @@ public class Main {
         System.out.println(userManager.getAll().size()); // 2
 
         Epic epic = new Epic("write", "book");
+        userManager.createEpic(epic);
 
         task.setStatus("NEW");
         userManager.update(task);
@@ -36,6 +38,20 @@ public class Main {
 
         epic.setStatus("DONE");
         System.out.println(epic.getStatus());
+
+        SubTask subTask = new SubTask("cleaning", "wash the floors", epic);
+        userManager.createSubTask(subTask);
+
+        ArrayList<Task> epicsAll = userManager.getEpicAll();
+        for (Task epicview : epicsAll) {
+            System.out.println(epicview.getId());
+        }
+
+
+
+
+
+
 
 
 

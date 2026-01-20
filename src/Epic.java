@@ -7,9 +7,8 @@ public class Epic extends Task {
     }
     private HashMap<Integer, SubTask> subtasks = new HashMap<>();
 
-    public ArrayList<Task> getEpicAll() {
-        return new ArrayList<>(subtasks.values());
-    }
+
+
 
     public Task getEpicById(int id) {
         return subtasks.get(id);
@@ -28,4 +27,9 @@ public class Epic extends Task {
         }
     }
 
+    public void createSubTask(SubTask subtask) {
+
+        subtasks.put(subtask.getId(), subtask);
+
+    }
 }
